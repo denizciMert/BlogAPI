@@ -8,7 +8,7 @@ namespace BlogAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -44,13 +44,13 @@ namespace BlogAPI
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
-                    context.Database.MigrateAsync();  // Apply any pending migrations
+                    var context = services.GetRequiredService<ApplicationDbContext>(); // Get the DbContext
+                    await context.Database.MigrateAsync(); // Apply migrations
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while migrating the database.");
+                    var logger = services.GetRequiredService<ILogger<Program>>(); // Get the logger
+                    logger.LogError(ex, "An error occurred while migrating the database."); // Log the error
                 }
             }
 
@@ -68,7 +68,7 @@ namespace BlogAPI
 
             app.MapControllers();
 
-            app.Run();  // Run the application
+            await app.RunAsync();  // Run the application
         }
     }
 }
