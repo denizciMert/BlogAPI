@@ -58,7 +58,6 @@ This project demonstrates a clean architecture and best practices in building a 
 
    ```bash
    git clone https://github.com/denizciMert/BlogAPI.git
-   cd BlogAPI
    ```
 
 2. Set up the database connection string in appsettings.json:
