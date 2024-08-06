@@ -1,0 +1,6 @@
+@BlogAPI_SoftITO_HostAddress = http://localhost:5119
+
+GET {{BlogAPI_SoftITO_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
